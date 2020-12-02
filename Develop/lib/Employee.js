@@ -9,8 +9,12 @@ function Employee(name, id, email) {
   this.getName = () => {
     return name;
   };
-  this.getId = () => {};
-  this.getEmail = () => {};
+  this.getId = () => {
+    return id;
+  };
+  this.getEmail = () => {
+    return email;
+  };
 }
 // Validation of constructor function creating an object
 //const e = new Employee("Thomas", 01, "dawson@code.com");
