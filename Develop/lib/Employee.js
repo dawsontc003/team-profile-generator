@@ -8,12 +8,13 @@ function Employee(name, id, email) {
   this.email = email;
 }
 // Validation of constructor function creating an object
-// const e = new Employee("Thomas", 01, "dawson@code.com");
+const e = new Employee("Thomas", 01, "dawson@code.com");
 // console.log(e);
 
 // setting getName() function
-// function getName() {
-//   console.log(this.name);
-// }
+function getName() {
+  console.log(e.name);
+}
+getName();
 
 module.exports = Employee;
