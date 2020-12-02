@@ -6,15 +6,16 @@ function Employee(name, id, email) {
   this.name = name;
   this.id = id;
   this.email = email;
+  this.getName = () => {
+    return name;
+  };
+  this.getId = () => {};
+  this.getEmail = () => {};
 }
 // Validation of constructor function creating an object
-const e = new Employee("Thomas", 01, "dawson@code.com");
-// console.log(e);
+//const e = new Employee("Thomas", 01, "dawson@code.com");
+//console.log(e);
 
-// setting getName() function
-function getName() {
-  console.log(e.name);
-}
-getName();
+//console.log(e.getName());
 
 module.exports = Employee;
