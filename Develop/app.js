@@ -11,39 +11,46 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
-inquirer.prompt([
-  // question for project title
-  {
-    type: "input",
-    message: "Managers Name?",
-    name: "Name",
-  },
-  // question for description details
-  {
-    type: "input",
-    message: "Employee ID?",
-    name: "ID",
-  },
-  // question for installation details
-  {
-    type: "input",
-    message: "Email Address?",
-    name: "Email",
-  },
-  // question for how to use application
-  {
-    type: "input",
-    message: "Office Phone Number?",
-    name: "OfficeNumber",
-  },
-  // question for license details
-  {
-    type: "list",
-    message: "Add addtional team members?",
-    name: "license",
-    choices: ["Engineer", "Intern", "None"],
-  },
-]);
+inquirer
+  .prompt([
+    // question for project title
+    {
+      type: "input",
+      message: "Managers Name?",
+      name: "Name",
+    },
+    // question for description details
+    {
+      type: "input",
+      message: "Employee ID?",
+      name: "ID",
+    },
+    // question for installation details
+    {
+      type: "input",
+      message: "Email Address?",
+      name: "Email",
+    },
+    // question for how to use application
+    {
+      type: "input",
+      message: "Office Phone Number?",
+      name: "OfficeNumber",
+    },
+    // question for license details
+    {
+      type: "list",
+      message: "Add addtional team members?",
+      name: "license",
+      choices: ["Engineer", "Intern", "None"],
+    },
+    // chaining on dot then response to capture user input from command line terminal
+  ])
+  .then((response) =>
+    // invoking write file method with file type ".md" with details to inject user input from the command line in the desired sectoins of the .md file
+    console.log("working")
+  );
+
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
