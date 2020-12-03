@@ -23,4 +23,6 @@ function Employee(name, id, email) {
   };
 }
 
+//const e = new Employee("Thomas", 01, "dawson@code.com");
+
 module.exports = Employee;
