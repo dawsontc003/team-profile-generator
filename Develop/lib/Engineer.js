@@ -2,8 +2,14 @@
 const Employee = require("../lib/Employee");
 
 // Create Engineer object from constructor function
-function Employee(github) {
+function Engineer(github) {
   this.github = github;
+  this.getgithub = () => {
+    return github;
+  };
+  this.getRole = () => {
+    return "Engineer";
+  };
 }
 
 module.exports = Engineer;
