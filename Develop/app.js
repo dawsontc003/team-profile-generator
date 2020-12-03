@@ -41,14 +41,22 @@ inquirer
     {
       type: "list",
       message: "Add addtional team members?",
-      name: "license",
+      name: "employee",
       choices: ["Engineer", "Intern", "None"],
     },
     // chaining on dot then response to capture user input from command line terminal
   ])
   .then((response) =>
     // invoking write file method with file type ".md" with details to inject user input from the command line in the desired sectoins of the .md file
-    console.log("working")
+    {
+      if (response.employee === "Intern") {
+        console.log("ask intern questions");
+      } else if (response.employee === "Engineer") {
+        console.log("ask engineer questions");
+      } else {
+        console.log("stop question");
+      }
+    }
   );
 
 // and to create objects for each team member (using the correct classes as blueprints!)
