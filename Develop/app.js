@@ -54,6 +54,18 @@ inquirer
       engineer();
     } else {
       console.log("stop question");
+      // console.log(response);
+      // console.log(response.Name);
+      // console.log(response.ID);
+      // console.log(response.Email);
+      // console.log(response.OfficeNumber);
+      const manager = new Manager(
+        response.Name,
+        response.ID,
+        response.Email,
+        response.OfficeNumber
+      );
+      console.log(manager);
     }
   });
 // Function for gathering Intern details
@@ -100,6 +112,7 @@ function intern() {
         engineer();
       } else {
         console.log("stop question");
+        console.log(response);
       }
     });
 }
@@ -147,6 +160,7 @@ function engineer() {
         engineer();
       } else {
         console.log("stop question");
+        console.log(response);
       }
     });
 }
