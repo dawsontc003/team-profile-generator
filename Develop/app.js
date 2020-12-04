@@ -13,101 +13,142 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 inquirer
   .prompt([
-    // question for project title
+    // question for Manager name
     {
       type: "input",
       message: "Managers Name?",
       name: "Name",
     },
-    // question for description details
+    // question for Manager employee ID
     {
       type: "input",
       message: "Employee ID?",
       name: "ID",
     },
-    // question for installation details
+    // question for Manager Email address
     {
       type: "input",
       message: "Email Address?",
       name: "Email",
     },
-    // question for how to use application
+    // question for Manager office number
     {
       type: "input",
       message: "Office Phone Number?",
       name: "OfficeNumber",
     },
-    // question for license details
+    // question for adding employees
     {
       type: "list",
       message: "Add addtional team members?",
       name: "employee",
       choices: ["Engineer", "Intern", "None"],
     },
-    // chaining on dot then response to capture user input from command line terminal
+    // .then response to call functions for Intern, Engineer, or end CLI questions
   ])
-  .then((response) =>
-    // invoking write file method with file type ".md" with details to inject user input from the command line in the desired sectoins of the .md file
-    {
-      if (response.employee === "Intern") {
-        intern();
-        // console.log("ask intern questions");
-      } else if (response.employee === "Engineer") {
-        console.log("ask engineer questions");
-      } else {
-        console.log("stop question");
-      }
+  .then((response) => {
+    if (response.employee === "Intern") {
+      intern();
+      // console.log("ask intern questions");
+    } else if (response.employee === "Engineer") {
+      engineer();
+    } else {
+      console.log("stop question");
     }
-  );
+  });
 // Function for gathering Intern details
 function intern() {
   inquirer
     .prompt([
-      // question for project title
+      // question for Intern name
       {
         type: "input",
         message: "Interns Name?",
         name: "InternName",
       },
-      // question for description details
+      // question for Intern employee ID
       {
         type: "input",
         message: "Employee ID?",
         name: "ID",
       },
-      // question for installation details
+      // question for Intern email address
       {
         type: "input",
         message: "Email Address?",
         name: "Email",
       },
-      // question for how to use application
+      // question for Intern school
       {
         type: "input",
         message: "School of Internship?",
         name: "School",
       },
-      // question for license details
+      // question for adding employees
       {
         type: "list",
         message: "Add addtional team members?",
         name: "employee",
         choices: ["Engineer", "Intern", "None"],
       },
-      // chaining on dot then response to capture user input from command line terminal
+      // .then response to call functions for Intern, Engineer, or end CLI questions
     ])
-    .then((response) =>
-      // invoking write file method with file type ".md" with details to inject user input from the command line in the desired sectoins of the .md file
-      {
-        if (response.employee === "Intern") {
-          intern();
-        } else if (response.employee === "Engineer") {
-          console.log("ask engineer questions");
-        } else {
-          console.log("stop question");
-        }
+    .then((response) => {
+      if (response.employee === "Intern") {
+        intern();
+      } else if (response.employee === "Engineer") {
+        engineer();
+      } else {
+        console.log("stop question");
       }
-    );
+    });
+}
+
+function engineer() {
+  inquirer
+    .prompt([
+      // question for Engineer name
+      {
+        type: "input",
+        message: "Engineer's Name?",
+        name: "EngineerName",
+      },
+      // question for Engineer employee ID
+      {
+        type: "input",
+        message: "Employee ID?",
+        name: "ID",
+      },
+      // question for Engineer email address
+      {
+        type: "input",
+        message: "Email Address?",
+        name: "Email",
+      },
+      // question for Engineer school
+      {
+        type: "input",
+        message: "Engineer's Github username?",
+        name: "School",
+      },
+      // question for adding employees
+      {
+        type: "list",
+        message: "Add addtional team members?",
+        name: "employee",
+        choices: ["Engineer", "Intern", "None"],
+      },
+      // .then response to call functions for Intern, Engineer, or end CLI questions
+    ])
+    .then((response) => {
+      if (response.employee === "Intern") {
+        intern();
+      } else if (response.employee === "Engineer") {
+        engineer();
+      } else {
+        console.log("stop question");
+      }
+    });
 }
 
 // and to create objects for each team member (using the correct classes as blueprints!)
