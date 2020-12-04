@@ -50,7 +50,8 @@ inquirer
     // invoking write file method with file type ".md" with details to inject user input from the command line in the desired sectoins of the .md file
     {
       if (response.employee === "Intern") {
-        console.log("ask intern questions");
+        intern();
+        // console.log("ask intern questions");
       } else if (response.employee === "Engineer") {
         console.log("ask engineer questions");
       } else {
@@ -58,6 +59,56 @@ inquirer
       }
     }
   );
+// Function for gathering Intern details
+function intern() {
+  inquirer
+    .prompt([
+      // question for project title
+      {
+        type: "input",
+        message: "Interns Name?",
+        name: "InternName",
+      },
+      // question for description details
+      {
+        type: "input",
+        message: "Employee ID?",
+        name: "ID",
+      },
+      // question for installation details
+      {
+        type: "input",
+        message: "Email Address?",
+        name: "Email",
+      },
+      // question for how to use application
+      {
+        type: "input",
+        message: "School of Internship?",
+        name: "School",
+      },
+      // question for license details
+      {
+        type: "list",
+        message: "Add addtional team members?",
+        name: "employee",
+        choices: ["Engineer", "Intern", "None"],
+      },
+      // chaining on dot then response to capture user input from command line terminal
+    ])
+    .then((response) =>
+      // invoking write file method with file type ".md" with details to inject user input from the command line in the desired sectoins of the .md file
+      {
+        if (response.employee === "Intern") {
+          intern();
+        } else if (response.employee === "Engineer") {
+          console.log("ask engineer questions");
+        } else {
+          console.log("stop question");
+        }
+      }
+    );
+}
 
 // and to create objects for each team member (using the correct classes as blueprints!)
 
