@@ -63,6 +63,7 @@ inquirer
     } else {
       console.log("stop question");
       render(employeeArray);
+      generateHTML();
     }
   });
 // Function for gathering Intern details
@@ -119,6 +120,7 @@ function intern() {
       } else {
         console.log("stop question");
         render(employeeArray);
+        generateHTML();
       }
     });
 }
@@ -167,24 +169,30 @@ function engineer() {
         response.Github
       );
       employeeArray.push(engineer);
-      console.log(employeeArray);
       if (response.employee === "Intern") {
         intern();
       } else if (response.employee === "Engineer") {
         engineer();
       } else {
         console.log("stop question");
+        render(employeeArray);
         // add to all stop instances...
-        //generateHTML();
-        //
+        generateHTML();
       }
     });
 }
 
+// function generateHTML() {
+//   fs.writeFile(__dirname + "output/team.hmtl", render(employeeArray));
+// }
 function generateHTML() {
-  fs.writeFile(__dirname + "output/team.hmtl", render(employeeArray));
+  fs.writeFile(
+    "output/team.html",
+    render(employeeArray),
+    // error handling and success message to advise commandline user of error or succes
+    (err) => (err ? console.error(err) : console.log("Success!"))
+  );
 }
-
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
