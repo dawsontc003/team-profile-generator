@@ -9,7 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-
+const employeeArray = [];
 // Write code to use inquirer to gather information about the development team members,
 inquirer
   .prompt([
@@ -47,6 +47,14 @@ inquirer
     // .then response to call functions for Intern, Engineer, or end CLI questions
   ])
   .then((response) => {
+    const manager = new Manager(
+      response.Name,
+      response.ID,
+      response.Email,
+      response.OfficeNumber
+    );
+    employeeArray.push(manager);
+    //console.log(employeeArray);
     if (response.employee === "Intern") {
       intern();
       // console.log("ask intern questions");
@@ -54,18 +62,7 @@ inquirer
       engineer();
     } else {
       console.log("stop question");
-      // console.log(response);
-      // console.log(response.Name);
-      // console.log(response.ID);
-      // console.log(response.Email);
-      // console.log(response.OfficeNumber);
-      const manager = new Manager(
-        response.Name,
-        response.ID,
-        response.Email,
-        response.OfficeNumber
-      );
-      console.log(manager);
+      render(employeeArray);
     }
   });
 // Function for gathering Intern details
@@ -106,13 +103,22 @@ function intern() {
       // .then response to call functions for Intern, Engineer, or end CLI questions
     ])
     .then((response) => {
+      const intern = new Intern(
+        response.InternName,
+        response.ID,
+        response.Email,
+        response.School
+      );
+
+      employeeArray.push(intern);
+      //console.log(employeeArray);
       if (response.employee === "Intern") {
         intern();
       } else if (response.employee === "Engineer") {
         engineer();
       } else {
         console.log("stop question");
-        console.log(response);
+        render(employeeArray);
       }
     });
 }
@@ -142,7 +148,7 @@ function engineer() {
       {
         type: "input",
         message: "Engineer's Github username?",
-        name: "School",
+        name: "Github",
       },
       // question for adding employees
       {
@@ -154,15 +160,29 @@ function engineer() {
       // .then response to call functions for Intern, Engineer, or end CLI questions
     ])
     .then((response) => {
+      const engineer = new Engineer(
+        response.EngineerName,
+        response.ID,
+        response.Email,
+        response.Github
+      );
+      employeeArray.push(engineer);
+      console.log(employeeArray);
       if (response.employee === "Intern") {
         intern();
       } else if (response.employee === "Engineer") {
         engineer();
       } else {
         console.log("stop question");
-        console.log(response);
+        // add to all stop instances...
+        //generateHTML();
+        //
       }
     });
+}
+
+function generateHTML() {
+  fs.writeFile(__dirname + "output/team.hmtl", render(employeeArray));
 }
 
 // and to create objects for each team member (using the correct classes as blueprints!)
