@@ -38,13 +38,6 @@ inquirer
       message: "Office Phone Number?",
       name: "OfficeNumber",
     },
-    // question for adding employees
-    {
-      type: "list",
-      message: "Add addtional team members?",
-      name: "employee",
-      choices: ["Engineer", "Intern", "None"],
-    },
   ])
   .then((response) => {
     // Constructor function all with manager argument details
@@ -56,17 +49,8 @@ inquirer
     );
     // pushing manager object to employee array
     employeeArray.push(manager);
-    // If else conditions for employee type specific questions
-    if (response.employee === "Intern") {
-      intern();
-    } else if (response.employee === "Engineer") {
-      engineer();
-    } else {
-      // call function to push employee info to HTML templates
-      render(employeeArray);
-      // call function to write HTML file
-      generateHTML();
-    }
+    // function call to verify additional employees
+    moreEmployees();
   });
 // Function for gathering Intern details
 function intern() {
@@ -96,13 +80,6 @@ function intern() {
         message: "School of Internship?",
         name: "School",
       },
-      // question for adding employees
-      {
-        type: "list",
-        message: "Add addtional team members?",
-        name: "employee",
-        choices: ["Engineer", "Intern", "None"],
-      },
     ])
     .then((response) => {
       // Constructor function all with intern argument details
@@ -114,18 +91,8 @@ function intern() {
       );
       // pushing intern object to employee array
       employeeArray.push(intern);
-      // If else conditions for employee type specific questions
-      if (response.employee === "Intern") {
-        intern();
-      } else if (response.employee === "Engineer") {
-        engineer();
-      } else {
-        console.log("stop question");
-        // call function to push employee info to HTML templates
-        render(employeeArray);
-        // call function to write HTML file
-        generateHTML();
-      }
+      // function call to verify additional employees
+      moreEmployees();
     });
 }
 // Function for gathering Engineer details
@@ -156,13 +123,6 @@ function engineer() {
         message: "Engineer's Github username?",
         name: "Github",
       },
-      // question for adding employees
-      {
-        type: "list",
-        message: "Add addtional team members?",
-        name: "employee",
-        choices: ["Engineer", "Intern", "None"],
-      },
     ])
     .then((response) => {
       // Constructor function all with engineer argument details
@@ -174,13 +134,29 @@ function engineer() {
       );
       // pushing engineer object to employee array
       employeeArray.push(engineer);
-      // If else conditions for employee type specific questions
+      // function call to verify additional employees
+      moreEmployees();
+    });
+}
+// function for more employees question
+function moreEmployees() {
+  inquirer
+    .prompt([
+      // question for adding employees
+      {
+        type: "list",
+        message: "Add additional team members?",
+        name: "employee",
+        choices: ["Engineer", "Intern", "None"],
+      },
+    ])
+    .then((response) => {
+      //If else conditions for employee type specific questions
       if (response.employee === "Intern") {
         intern();
       } else if (response.employee === "Engineer") {
         engineer();
       } else {
-        console.log("stop question");
         // call function to push employee info to HTML templates
         render(employeeArray);
         // call function to write HTML file

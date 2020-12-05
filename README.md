@@ -48,4 +48,4 @@ If you have specific questions please contact the primary developer at: dawsontc
 
 # Application Image
 
-![image](https://user-images.githubusercontent.com/69283624/101236652-43771400-3690-11eb-9302-deeffb179093.png)
+![image](https://user-images.githubusercontent.com/69283624/101261801-0f830980-36f7-11eb-8641-9493838603a7.png)
